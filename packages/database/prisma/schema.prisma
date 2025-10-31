@@ -11,6 +11,83 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
+model User {
+  id          Int     @id @default(autoincrement())
+  username    String  @unique
+  displayName String?
+  password    String
+
+  ownedLists  List[]           @relation("OwnedLists")
+  memberships ListMember[]
+  assignments ItemAssignment[]
+  BringItem   BringItem[]
+  SuggestItem SuggestItem[]
+}
+
+model List {
+  id             Int              @id @default(autoincrement())
+  name           String
+  ownerId        Int
+  owner          User             @relation("OwnedLists", fields: [ownerId], references: [id])
+  members        ListMember[]
+  bringItems     BringItem[]
+  suggestItems   SuggestItem[]
+  ItemAssignment ItemAssignment[]
+}
+
+model ListMember {
+  id     Int    @id @default(autoincrement())
+  listId Int
+  userId Int
+  role   String @default("member") // could be "member" or "owner" if needed
+
+  list List @relation(fields: [listId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([listId, userId]) // one membership per user per list
+}
+
+model BringItem {
+  id          Int     @id @default(autoincrement())
+  listId      Int //list the item belongs to
+  name        String
+  count       Int?
+  description String?
+
+  assignedToId Int? // which user is responsible for bringing
+  assignedTo   User? @relation(fields: [assignedToId], references: [id])
+
+  list           List             @relation(fields: [listId], references: [id])
+  ItemAssignment ItemAssignment[]
+}
+
+model SuggestItem {
+  id            Int     @id @default(autoincrement())
+  listId        Int
+  name          String
+  count         Int?
+  description   String?
+  priority      String?
+  approved      Boolean @default(false)
+  suggestedById Int // who suggested it
+  suggestedBy   User    @relation(fields: [suggestedById], references: [id])
+
+  list List @relation(fields: [listId], references: [id])
+}
+
+model ItemAssignment {
+  id     Int @id @default(autoincrement())
+  itemId Int
+  userId Int
+  listId Int
+
+  item BringItem @relation(fields: [itemId], references: [id])
+  user User      @relation(fields: [userId], references: [id])
+  list List      @relation(fields: [listId], references: [id])
+
+  @@unique([itemId, userId]) // no duplicate assignment
+}
+
 // Example table used in the express router example
 model Score {
   id    Int      @id @default(autoincrement())
