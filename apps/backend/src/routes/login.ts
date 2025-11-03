@@ -1,7 +1,6 @@
 import express, { Router, Request, Response } from 'express';
-import bcrypt from 'bcrypt';
-import { Prisma } from 'database';
-import PrismaClient from '../bin/prisma-client';
+import bcrypt from 'bcryptjs';
+import prisma from '../bin/prisma-client';
 
 const router: Router = express.Router();
 
@@ -9,13 +8,14 @@ const router: Router = express.Router();
 router.post('/', async (req: Request, res: Response) => {
     const { username, inputPassword } = req.body;
     try {
-        const user = await PrismaClient.user.findUnique({
+        const user = await prisma.user.findUnique({
             where: {
                 username: username,
             },
         });
         if (!user){
-            return res.status(401).json({ error: "Invalid username" });
+            res.status(401).json({ error: "Invalid username" });
+            return;
         }
         const isValid = await bcrypt.compare(inputPassword, user.password);
         if (isValid) {
@@ -32,4 +32,6 @@ router.post('/', async (req: Request, res: Response) => {
         console.error("Error fetching username and password data:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
-}); export default router;
+});
+
+export default router;

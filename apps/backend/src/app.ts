@@ -3,7 +3,7 @@ import express, { Express, NextFunction, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import healthcheckRouter from './routes/healthcheck';
-import highscoreRouter from './routes/score.ts';
+import highscoreRouter from './routes/score';
 import loginRouter from './routes/login';
 import { API_ROUTES } from 'common/src/constants';
 

@@ -1,23 +1,37 @@
-import PrismaClient from '../apps/backend/src/bin/prisma-client.ts'
-
+import bcrypt from 'bcrypt';
+import PrismaClient from '../apps/backend/src/bin/prisma-client.ts';
 
 async function main() {
-    //user 1
+    const saltRounds = 10;
+
+    // Hash passwords before inserting
+    const hashedNora = await bcrypt.hash('nora', saltRounds);
+    const hashedGuest = await bcrypt.hash('guest', saltRounds);
+
     await PrismaClient.user.createMany({
         data: [
-            {id: 1, username: 'nora', displayName: 'Nora', password: 'nora'},
-            {id: 2, username: 'guest', displayName: 'guest', password: 'guest'},
-            ]
+            {
+                id: 1,
+                username: 'nora',
+                displayName: 'Nora',
+                password: hashedNora,
+            },
+            {
+                id: 2,
+                username: 'guest',
+                displayName: 'Guest',
+                password: hashedGuest,
+            },
+        ],
     });
 
-    console.log('User seeded successfully!');
-
+    console.log('Users seeded successfully!');
 }
 
 main()
     .catch((e) => {
         console.error(e);
-        return Promise.reject(e);
+        process.exit(1);
     })
     .finally(async () => {
         await PrismaClient.$disconnect();

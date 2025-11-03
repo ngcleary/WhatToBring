@@ -10,16 +10,17 @@ function Login() {
     const [incorrectLogin, setIncorrectLogin] = useState(''); //to add a popup if the user logs in incorrectly
     const [formData, setFormData] = useState({
         username: '',
-        password: '',
+        inputPassword: '',
     });
     async function handleLogin(){
         try {
             // Send a GET request to the backend at API_ROUTES.SCORE
-            const response = await axios.post('/api/login', {
+            const response = await axios.post(API_ROUTES.LOGIN, {
                 ...formData,
             });
             if (response.status === 200) {
-
+                console.log(response.data);
+                console.log("yippee")
             }
         }
         catch (error) {}
@@ -39,14 +40,20 @@ function Login() {
                         name="device"
                         value={formData.username}
                         placeholder="Username"
+                        onChange={(e) =>
+                            setFormData({ ...formData, username: e.target.value })
+                        }
                         className="w-full px-4 py-2 rounded-md border border-border bg-input"
                         required/>
 
                     <Input
                         type="text"
                         name="device"
-                        value={formData.password}
+                        value={formData.inputPassword}
                         placeholder="Password"
+                        onChange={(e) =>
+                            setFormData({ ...formData, inputPassword: e.target.value })
+                        }
                         className="w-full px-4 py-2 rounded-md border border-border bg-input"
                         required/>
 
