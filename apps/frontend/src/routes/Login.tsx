@@ -18,6 +18,9 @@ function Login() {
             const response = await axios.post('/api/login', {
                 ...formData,
             });
+            if (response.status === 200) {
+
+            }
         }
         catch (error) {}
     }
@@ -51,7 +54,7 @@ function Login() {
                         type="submit"
                         onClick={(e) => {
                             e.preventDefault();
-                            // handleLogin();
+                            handleLogin();
                         }}
                         className="px-4 py-2 bg-primary text-blue rounded hover:bg-foreground transition-colors duration-200"
                     >

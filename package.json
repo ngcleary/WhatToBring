@@ -23,6 +23,7 @@
     "seed": "yarn userseed"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6",
     "@types/node": "^22.13.13",
     "@vitest/ui": "^3.0.9",
     "@yarnpkg/pnpify": "^4.1.4",
@@ -39,6 +40,8 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "common": "workspace:*",

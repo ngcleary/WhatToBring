@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import healthcheckRouter from './routes/healthcheck';
 import highscoreRouter from './routes/score.ts';
+import loginRouter from './routes/login';
 import { API_ROUTES } from 'common/src/constants';
 
 const app: Express = express(); // Setup the backend
@@ -26,6 +27,7 @@ app.use(cookieParser()); // Cookie parser
 // won't be reached by the default proxy and prod setup
 app.use(API_ROUTES.HEALTHCHECK, healthcheckRouter);
 app.use(API_ROUTES.SCORE, highscoreRouter);
+app.use(API_ROUTES.LOGIN, loginRouter);
 
 /**
  * Catch all 404 errors, and forward them to the error handler
