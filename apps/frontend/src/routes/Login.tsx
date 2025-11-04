@@ -98,7 +98,7 @@ function Login() {
                             </form>
                         </CardContent>
                         <CardFooter className="flex-col gap-2">
-                            <Button variant="outline" className="w-full"
+                            <Button variant="default" className="w-full"
                                 type="submit"
                                 onClick={(e) => {
                                     e.preventDefault();
@@ -107,7 +107,7 @@ function Login() {
                             >
                                 Login
                             </Button>
-                            <Button variant="outline" className="w-full">
+                            <Button variant="link" className="w-full">
                                 Login with Google
                             </Button>
                         </CardFooter>
