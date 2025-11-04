@@ -24,6 +24,7 @@ function Login() {
         username: '',
         inputPassword: '',
     });
+    const [showSignup, setShowSignup] = useState(false);
 
     async function handleLogin(){
         if (!formData.username) {
@@ -50,6 +51,15 @@ function Login() {
             navigate('/home');
         }
     }
+
+    // pop-up card for signup variable
+    function signUpClick() {
+        setShowSignup(true);
+    }
+    function closeSignupClick(){
+        setShowSignup(false);
+    }
+
     return (
         <div className={'bg-primary h-[calc(100vh-65px)] relative'}>
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 from-[0%] to-transparent to-[70%] z-10"></div>
@@ -62,7 +72,12 @@ function Login() {
                                 Login or Signup to start planning
                             </CardDescription>
                             <CardAction>
-                                <Button variant="link">Sign Up</Button>
+                                <Button variant="link"
+                                        type="submit"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            signUpClick();
+                                        }}>Sign Up</Button>
                             </CardAction>
                         </CardHeader>
                         <CardContent>
@@ -122,6 +137,42 @@ function Login() {
                     </Card>
                 </div>
             </div>
+            {/* Signup Modal */}
+            {showSignup && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                    <Card className="w-full max-w-md bg-white p-6 rounded-lg">
+                        <CardHeader>
+                            <CardTitle>Sign Up</CardTitle>
+                            <CardDescription>Create your account</CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex flex-col gap-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="signup-username">Username</Label>
+                                <Input id="signup-username" placeholder="Enter username" />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="signup-email">Email</Label>
+                                <Input id="signup-email" type="email" placeholder="Enter email" />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="signup-password">Password</Label>
+                                <Input id="signup-password" type="password" placeholder="Password" />
+                            </div>
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="default" onClick={() => alert("Sign Up clicked")}>
+                                Sign Up
+                            </Button>
+                            <Button variant="link" onClick={(e) => {
+                                e.preventDefault();
+                                closeSignupClick();
+                            }}>
+                                Cancel
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                </div>
+            )}
             <Footer></Footer>
         </div>
     )
