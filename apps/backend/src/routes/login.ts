@@ -34,4 +34,36 @@ router.post('/', async (req: Request, res: Response) => {
     }
 });
 
+router.post('/signup', async (req: Request, res: Response) => {
+    console.log('IN /SIGNUP');
+    const { usernameSignup, displayName, inputPasswordSignup } = req.body;
+    console.log('usernameSignup: ', usernameSignup);
+    //encrypt password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(inputPasswordSignup, saltRounds);
+    //check database if username is taken
+    try {
+        const user = await prisma.user.findUnique({
+            where: { username: usernameSignup },
+        });
+
+        if (user) {
+            res.status(200).json({ message: 'user already exists' });
+            return;
+        } else if (!user) {
+            const newUser = await prisma.user.create({
+                data: {
+                    username: usernameSignup,
+                    displayName: displayName,
+                    password: hashedPassword,
+                },
+            });
+        }
+        res.status(200).json({ message: 'username and password saved' });
+    } catch (error) {
+        console.error('Error creating username and password data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 export default router;
