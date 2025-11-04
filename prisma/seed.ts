@@ -11,13 +11,11 @@ async function main() {
     await PrismaClient.user.createMany({
         data: [
             {
-                id: 1,
                 username: 'nora',
                 displayName: 'Nora',
                 password: hashedNora,
             },
             {
-                id: 2,
                 username: 'guest',
                 displayName: 'Guest',
                 password: hashedGuest,
