@@ -15,25 +15,25 @@
 /*    -webkit-text-size-adjust: 100%;*/
 /*}*/
 
-    /*:root {*/
-    /*    --background: #7C91A3;*/
-    /*    --foreground: #1E1E1E;*/
+    :root {
+        --background: #7C91A3;
+        --foreground: #1E1E1E;
 
-    /*    --primary: #BF7C41;*/
-    /*    --primary-foreground: #ffffff;*/
+        --primary: #BF7C41;
+        --primary-foreground: #ffffff;
 
-    /*    !*--secondary: #8097A6;*!*/
-    /*    --secondary: #e8e841;*/
-    /*    --secondary-foreground: #ffffff;*/
+        /*--secondary: #8097A6;*/
+        --secondary: #e8e841;
+        --secondary-foreground: #ffffff;
 
-    /*    --accent: #57731A;*/
-    /*    --accent-foreground: #ffffff;*/
+        --accent: #57731A;
+        --accent-foreground: #ffffff;
 
-    /*    --muted: #7C91A3;*/
-    /*    --muted-foreground: #1E1E1E;*/
+        --muted: #7C91A3;
+        --muted-foreground: #1E1E1E;
 
-    /*    --warning: #F2A007;*/
-    /*}*/
+        --warning: #F2A007;
+    }
 
 
 @theme inline {
@@ -101,18 +101,18 @@
     --radius: 0.625rem;
 
     /* Replaced with your custom theme */
-    --background: #7C91A3;;
+    --background: #D9E8F5;
     --card: #FFFFFF;
     --foreground: oklch(0.145 0 0);
     --card-foreground: oklch(0.145 0 0);
     --popover: #FFFFFF;
     --popover-foreground: oklch(0.145 0 0);
-    --primary: #304269;
+    --primary: #57731A;
     --primary-foreground: #FFFFFF;
     --secondary: #6C8EB1;
     --inside-boxes: #dbdbdbd;
     --secondary-foreground: #304269;
-    --muted: #6C8EB1;
+    --muted: #8097A6;
     --muted-foreground: oklch(0.556 0 0);
     --accent: oklch(0.577 0.245 27.325);
     --accent-foreground: #304269;

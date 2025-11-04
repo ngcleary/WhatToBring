@@ -24,7 +24,15 @@ function Login() {
         username: '',
         inputPassword: '',
     });
+
     async function handleLogin(){
+        if (!formData.username) {
+            alert("Please provide a valid username");
+            return;
+        } else if (!formData.inputPassword){
+            alert("Please provide a valid password");
+            return;
+        }
         try {
             // Send a GET request to the backend at API_ROUTES.SCORE
             const response = await axios.post(API_ROUTES.LOGIN, {
@@ -114,6 +122,7 @@ function Login() {
                     </Card>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     )
 
