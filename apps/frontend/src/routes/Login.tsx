@@ -1,12 +1,13 @@
 import {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { API_ROUTES } from 'common/src/constants.ts';
 import ExampleButton from '../components/ExampleButton';
 import { Button } from '../components/UI/Button.tsx';
-import { Input } from '../components/UI/Input.tsx';
+import { Input } from '../components/UI/Input.tsx';;
 
 function Login() {
-
+    const navigate = useNavigate();
     const [incorrectLogin, setIncorrectLogin] = useState(''); //to add a popup if the user logs in incorrectly
     const [formData, setFormData] = useState({
         username: '',
@@ -20,10 +21,15 @@ function Login() {
             });
             if (response.status === 200) {
                 console.log(response.data);
-                console.log("yippee")
+                console.log("User found in database");
+                navigate('/examplepage');
             }
         }
-        catch (error) {}
+        catch (error) {
+            console.error('Error submitting request', error);
+            console.log("invalid login", error);
+            navigate('/home');
+        }
     }
     return (
         <div className={'bg-primary flex-col h-screen'}>

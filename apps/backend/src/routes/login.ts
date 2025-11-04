@@ -13,24 +13,24 @@ router.post('/', async (req: Request, res: Response) => {
                 username: username,
             },
         });
-        if (!user){
-            res.status(401).json({ error: "Invalid username" });
+        if (!user) {
+            res.status(401).json({ error: 'Invalid username' });
             return;
         }
         const isValid = await bcrypt.compare(inputPassword, user.password);
         if (isValid) {
-            console.log("Password is correct!");
+            console.log('Password is correct!');
         } else {
-            console.log("Invalid password");
+            console.log('Invalid password');
+            res.status(404).json({ error: 'Invalid password' });
+            return;
         }
 
-        console.log("Username and password found", username);
-        res.status(200).json({message: "user is safe",
-            user: username});
-
+        console.log('Username and password found', username);
+        res.status(200).json({ message: 'user is safe', user: username });
     } catch (error) {
-        console.error("Error fetching username and password data:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        console.error('Error fetching username and password data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
