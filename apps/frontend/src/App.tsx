@@ -5,6 +5,7 @@ import PageNotFound from "./routes/PageNotFound.tsx";
 import Login from './routes/Login.tsx';
 import Home from './routes/Home.tsx';
 import ExampleComponent from "./components/ExampleComponent.tsx";
+import Footer from "./components/Footer.tsx";
 
 function App() {
     const router = createBrowserRouter([
@@ -12,8 +13,8 @@ function App() {
             path: '/',
             errorElement: <PageNotFound/>,
             children: [
-                { index: true, element: <Home/> },
-                { path: 'login', element: <Login/> },
+                { index: true, element: <Login/> },
+                // { path: 'login', element: <Login/> },
                 { path: 'ExamplePage', element: <ExamplePage/>},
                 { path: 'ExampleComponent', element: <ExampleComponent/>}
             ]
@@ -22,7 +23,14 @@ function App() {
 
 
 
-    return <RouterProvider router={router} />;
+    // return <RouterProvider router={router} />;
+    return (
+        <div>
+            <RouterProvider router={router} />
+            {/*<Footer/>*/}
+        </div>
+    );
+
 }
 
 export default App;

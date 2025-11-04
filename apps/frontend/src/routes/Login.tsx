@@ -4,7 +4,18 @@ import axios from 'axios';
 import { API_ROUTES } from 'common/src/constants.ts';
 import ExampleButton from '../components/ExampleButton';
 import { Button } from '../components/UI/Button.tsx';
-import { Input } from '../components/UI/Input.tsx';;
+import { Input } from '../components/UI/Input.tsx';import { Label } from '@radix-ui/react-label';
+import Footer from "../components/Footer.tsx";
+import {
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "../components/UI/card.tsx"
+
 
 function Login() {
     const navigate = useNavigate();
@@ -32,78 +43,78 @@ function Login() {
         }
     }
     return (
-        <div className={'bg-primary flex-col h-screen'}>
-            <div className="flex justify-center items-center bg-[url(/hero-page-3.jpeg)] bg-primary bg-blend-soft-light bg-no-repeat bg-cover h-6/7">
-                <div className="bg-white p-5 rounded-lg shadow-md ring-2 text-center w-24/100 min-w-50">
-                    <div className={'flex items-center justify-center p-2'}>
-                        {/*<img className="logo w-10" src="/mgb.png" alt="Mass General Brigham" />*/}
-                        {/*<Label className={'text-2xl font-bold text-foreground'}>*/}
-                        {/*    Mass General Brigham*/}
-                        {/*</Label>*/}
-                    </div>
-                    <Input
-                        type="text"
-                        name="device"
-                        value={formData.username}
-                        placeholder="Username"
-                        onChange={(e) =>
-                            setFormData({ ...formData, username: e.target.value })
-                        }
-                        className="w-full px-4 py-2 rounded-md border border-border bg-input"
-                        required/>
-
-                    <Input
-                        type="text"
-                        name="device"
-                        value={formData.inputPassword}
-                        placeholder="Password"
-                        onChange={(e) =>
-                            setFormData({ ...formData, inputPassword: e.target.value })
-                        }
-                        className="w-full px-4 py-2 rounded-md border border-border bg-input"
-                        required/>
-
-                    <Button
-                        type="submit"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            handleLogin();
-                        }}
-                        className="px-4 py-2 bg-primary text-blue rounded hover:bg-foreground transition-colors duration-200"
-                    >
-                        Login
-                    </Button>
-
-
-
-                    {/*{incorrectLogin && ( //for adding popup if the user logs in with the wrong username and/or password*/}
-                    {/*    <div>*/}
-                    {/*        <br />*/}
-                    {/*        <div*/}
-                    {/*            className={*/}
-                    {/*                'flex items-center justify-center w-full rounded-md bg-destructive/40 border border-accent-foreground'*/}
-                    {/*            }*/}
-                    {/*        >*/}
-                    {/*            <p*/}
-                    {/*                className={*/}
-                    {/*                    'inline text-xl p-1 font-bold text-destructive opacity-100'*/}
-                    {/*                }*/}
-                    {/*            >*/}
-                    {/*                !*/}
-                    {/*            </p>*/}
-                    {/*            <p*/}
-                    {/*                className={*/}
-                    {/*                    'inline text-[13px] p-1 font-bold text-foreground font-trade'*/}
-                    {/*                }*/}
-                    {/*            >*/}
-                    {/*                {incorrectLogin}*/}
-                    {/*            </p>{' '}*/}
-                    {/*            /!* displays error message from server *!/*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
+        <div className={'bg-primary h-[calc(100vh-65px)] relative'}>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 from-[0%] to-transparent to-[70%] z-10"></div>
+            <div className={'flex-col bg-[url(/LookWalk.png)] bg-no-repeat bg-cover h-full content-center'}>
+                <div className={'pl-8 text-center w-1/3 content-center h-full relative z-20 animate-fade-in'}>
+                    <Card className="w-full max-w-sm bg-white/90 backdrop-blur-sm">
+                        <CardHeader>
+                            <CardTitle className={'text-left text-2xl'}>WhatToBring</CardTitle>
+                            <CardDescription className={'text-left'}>
+                                Login or Signup to start planning
+                            </CardDescription>
+                            <CardAction>
+                                <Button variant="link">Sign Up</Button>
+                            </CardAction>
+                        </CardHeader>
+                        <CardContent>
+                            <form>
+                                <div className="flex flex-col gap-6">
+                                    <div className="text-left grid gap-2">
+                                        <Label htmlFor="username">Username</Label>
+                                        <Input
+                                            type="text"
+                                            name="device"
+                                            value={formData.username}
+                                            placeholder="Username"
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, username: e.target.value })
+                                            }
+                                            className="w-full px-4 py-2 rounded-md border border-border bg-input"
+                                            required/>
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <div className="flex items-center">
+                                            <Label htmlFor="password">Password</Label>
+                                            <a
+                                                href="#"
+                                                className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                                            >
+                                                Forgot your password?
+                                            </a>
+                                        </div>
+                                        <Input
+                                            type="text"
+                                            name="device"
+                                            value={formData.inputPassword}
+                                            placeholder="Password"
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, inputPassword: e.target.value })
+                                            }
+                                            className="w-full px-4 py-2 rounded-md border border-border bg-input"
+                                            required/>
+                                    </div>
+                                </div>
+                            </form>
+                        </CardContent>
+                        <CardFooter className="flex-col gap-2">
+                            <Button variant="outline" className="w-full"
+                                type="submit"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleLogin();
+                                }}
+                            >
+                                Login
+                            </Button>
+                            <Button variant="outline" className="w-full">
+                                Login with Google
+                            </Button>
+                        </CardFooter>
+                    </Card>
                 </div>
             </div>
         </div>
-    );
+    )
+
 } export default Login;
