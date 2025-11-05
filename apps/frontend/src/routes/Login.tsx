@@ -52,7 +52,7 @@ function Login() {
             if (response.status === 200) {
                 console.log(response.data);
                 console.log("User found in database");
-                navigate('/examplepage');
+                navigate('/home');
             }
         }
         catch (error) {
@@ -91,7 +91,7 @@ function Login() {
             } else if (response.status === 200 && response.data.message === 'username and password saved') {
                 console.log(response.data);
                 console.log("Username is available - user created");
-                navigate('/examplepage');
+                navigate('/home');
             }
         } catch (error) {
             console.error('Error signing up', error);

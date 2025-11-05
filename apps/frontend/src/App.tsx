@@ -14,7 +14,7 @@ function App() {
             errorElement: <PageNotFound/>,
             children: [
                 { index: true, element: <Login/> },
-                // { path: 'login', element: <Login/> },
+                { path: 'home', element: <Home/> },
                 { path: 'ExamplePage', element: <ExamplePage/>},
                 { path: 'ExampleComponent', element: <ExampleComponent/>}
             ]
