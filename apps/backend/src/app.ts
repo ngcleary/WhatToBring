@@ -2,11 +2,36 @@ import createError, { HttpError } from 'http-errors';
 import express, { Express, NextFunction, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import cors from 'cors';
+import session from 'express-session';
 import healthcheckRouter from './routes/healthcheck';
-import highscoreRouter from './routes/score.ts';
+import highscoreRouter from './routes/score';
+import loginRouter from './routes/login';
+import userRouter from './routes/user';
 import { API_ROUTES } from 'common/src/constants';
 
 const app: Express = express(); // Setup the backend
+//allow cookies and session info to be shared across front and backend
+app.use(
+    cors({
+        origin: 'http://localhost:3000',
+        credentials: true,
+    })
+);
+
+//set up session middleware
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET || 'supersecretkey', // use .env for production
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            httpOnly: true, // prevents JS access to cookie
+            secure: false, // set to true if using HTTPS
+            maxAge: 1000 * 60 * 60 * 24, // 1 day
+        },
+    })
+);
 
 // Setup generic middlewear
 app.use(
@@ -26,6 +51,8 @@ app.use(cookieParser()); // Cookie parser
 // won't be reached by the default proxy and prod setup
 app.use(API_ROUTES.HEALTHCHECK, healthcheckRouter);
 app.use(API_ROUTES.SCORE, highscoreRouter);
+app.use(API_ROUTES.LOGIN, loginRouter);
+app.use(API_ROUTES.USER, userRouter);
 
 /**
  * Catch all 404 errors, and forward them to the error handler

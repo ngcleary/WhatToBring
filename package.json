@@ -2,6 +2,9 @@
   "private": true,
   "name": "softeng-startercode-d25",
   "version": "1.0.1",
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "scripts": {
     "dev": "dotenv -e .env -- turbo run dev",
     "dev:wpi": "dotenv -e .env.wpi -- turbo run dev",
@@ -15,9 +18,14 @@
     "build": "turbo run build",
     "setup": "bash ./scripts/setup.sh",
     "deploy": "bash ./scripts/deploy.sh",
-    "prepare": "husky"
+    "prepare": "husky",
+    "userseed": "dotenv -e ${PROJECT_CWD}/.env ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
+    "seed": "yarn userseed"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6",
+    "@types/cors": "^2.8.19",
+    "@types/express-session": "^1.18.2",
     "@types/node": "^22.13.13",
     "@vitest/ui": "^3.0.9",
     "@yarnpkg/pnpify": "^4.1.4",
@@ -27,14 +35,24 @@
     "prettier": "^3.5.3",
     "prettier-config-custom": "workspace:*",
     "ts-config-custom": "workspace:*",
+    "ts-node": "^10.9.2",
     "turbo": "*",
-    "typescript": "^5.8.2",
+    "typescript": "^5.9.3",
     "vitest": "^3.0.9"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "common": "workspace:*",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "dotenv-cli": "^7.4.4"
+    "dotenv-cli": "^7.4.4",
+    "express-session": "^1.18.2",
+    "tailwind-merge": "^3.3.1",
+    "vite": "^7.1.12"
   },
   "resolutions": {
     "dotenv": "^16.4.7",
