@@ -35,12 +35,17 @@ const Home = () => {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen">
-            ({!listNames ? (
-                <p>Loading...</p>
-            ) : (
+            ({!listNames ?
+                <p>You must sign in to access this page</p>
+             : (
             <div className="flex flex-col items-center justify-center h-screen">
                 hello {listNames.displayName}
+                <ul>
+                    {listNames.memberLists.map(list => (
+                    <li key={list.id}>
+                        {list.name}</li>))}</ul>
             </div>
+
             )}
         </div>
     );
