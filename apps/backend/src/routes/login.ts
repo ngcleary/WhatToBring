@@ -26,6 +26,12 @@ router.post('/', async (req: Request, res: Response) => {
             return;
         }
 
+        //store session data --problem lines
+        req.session.username = user.username;
+        req.session.displayName = user.displayName;
+
+        console.log('req.session.username: ', req.session.username);
+
         console.log('Username and password found', username);
         res.status(200).json({ message: 'user is safe', user: username });
     } catch (error) {

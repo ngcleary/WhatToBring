@@ -24,6 +24,8 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^6",
+    "@types/cors": "^2.8.19",
+    "@types/express-session": "^1.18.2",
     "@types/node": "^22.13.13",
     "@vitest/ui": "^3.0.9",
     "@yarnpkg/pnpify": "^4.1.4",
@@ -45,8 +47,10 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "common": "workspace:*",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "dotenv-cli": "^7.4.4",
+    "express-session": "^1.18.2",
     "tailwind-merge": "^3.3.1",
     "vite": "^7.1.12"
   },
