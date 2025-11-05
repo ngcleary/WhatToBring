@@ -7,6 +7,7 @@ import session from 'express-session';
 import healthcheckRouter from './routes/healthcheck';
 import highscoreRouter from './routes/score';
 import loginRouter from './routes/login';
+import userRouter from './routes/user';
 import { API_ROUTES } from 'common/src/constants';
 
 const app: Express = express(); // Setup the backend
@@ -51,6 +52,7 @@ app.use(cookieParser()); // Cookie parser
 app.use(API_ROUTES.HEALTHCHECK, healthcheckRouter);
 app.use(API_ROUTES.SCORE, highscoreRouter);
 app.use(API_ROUTES.LOGIN, loginRouter);
+app.use(API_ROUTES.USER, userRouter);
 
 /**
  * Catch all 404 errors, and forward them to the error handler
