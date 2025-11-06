@@ -101,7 +101,8 @@ function Login() {
 
     return (
         <div className={'bg-primary h-[calc(100vh-65px)] relative'}>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 from-[0%] to-transparent to-[70%] z-10"></div>
+            <div
+                className="absolute inset-0 bg-gradient-to-r from-black/80 from-[0%] to-transparent to-[70%] z-10"></div>
             <div className={'flex-col bg-[url(/LookWalk.png)] bg-no-repeat bg-cover h-full content-center'}>
                 <div className={'pl-8 text-center w-1/3 content-center h-full relative z-20 animate-fade-in'}>
                     <Card className="w-full max-w-sm bg-white/90 backdrop-blur-sm">
@@ -130,7 +131,7 @@ function Login() {
                                             value={formData.username}
                                             placeholder="Username"
                                             onChange={(e) =>
-                                                setFormData({ ...formData, username: e.target.value })
+                                                setFormData({...formData, username: e.target.value})
                                             }
                                             className="w-full px-4 py-2 rounded-md border border-border bg-input"
                                             required/>
@@ -151,7 +152,7 @@ function Login() {
                                             value={formData.inputPassword}
                                             placeholder="Password"
                                             onChange={(e) =>
-                                                setFormData({ ...formData, inputPassword: e.target.value })
+                                                setFormData({...formData, inputPassword: e.target.value})
                                             }
                                             className="w-full px-4 py-2 rounded-md border border-border bg-input"
                                             required/>
@@ -161,11 +162,11 @@ function Login() {
                         </CardContent>
                         <CardFooter className="flex-col gap-2">
                             <Button variant="default" className="w-full"
-                                type="submit"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleLogin();
-                                }}
+                                    type="submit"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleLogin();
+                                    }}
                             >
                                 Login
                             </Button>
@@ -190,16 +191,17 @@ function Login() {
                                 <Input id="signup-username" placeholder="The ID other users will use to find you"
                                        value={formDataSignup.usernameSignup}
                                        onChange={(e) =>
-                                           setFormDataSignup({ ...formDataSignup, usernameSignup: e.target.value })
+                                           setFormDataSignup({...formDataSignup, usernameSignup: e.target.value})
                                        }
                                        required/>
                             </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="signup-displayName">Display Name</Label>
-                                <Input id="signup-displayName" type="text" placeholder="The name you want to appear on lists"
+                                <Input id="signup-displayName" type="text"
+                                       placeholder="The name you want to appear on lists"
                                        value={formDataSignup.displayName}
                                        onChange={(e) =>
-                                           setFormDataSignup({ ...formDataSignup, displayName: e.target.value })
+                                           setFormDataSignup({...formDataSignup, displayName: e.target.value})
                                        }
                                        required/>
                             </div>
@@ -208,7 +210,7 @@ function Login() {
                                 <Input id="signup-password" type="text" placeholder="Password"
                                        value={formDataSignup.inputPasswordSignup}
                                        onChange={(e) =>
-                                           setFormDataSignup({ ...formDataSignup, inputPasswordSignup: e.target.value })
+                                           setFormDataSignup({...formDataSignup, inputPasswordSignup: e.target.value})
                                        }
                                        required/>
                             </div>
@@ -235,4 +237,6 @@ function Login() {
         </div>
     )
 
-} export default Login;
+}
+
+export default Login;

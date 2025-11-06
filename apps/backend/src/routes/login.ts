@@ -5,37 +5,40 @@ import prisma from '../bin/prisma-client';
 const router: Router = express.Router();
 
 //get the password given the username
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response): Promise<void> => {
     const { username, inputPassword } = req.body;
+
     try {
         const user = await prisma.user.findUnique({
-            where: {
-                username: username,
-            },
+            where: { username },
         });
+
         if (!user) {
             res.status(401).json({ error: 'Invalid username' });
             return;
         }
+
         const isValid = await bcrypt.compare(inputPassword, user.password);
-        if (isValid) {
-            console.log('Password is correct!');
-        } else {
-            console.log('Invalid password');
-            res.status(404).json({ error: 'Invalid password' });
+        if (!isValid) {
+            res.status(401).json({ error: 'Invalid password' });
             return;
         }
 
-        //store session data --problem lines
+        //session data
         req.session.username = user.username;
         req.session.displayName = user.displayName;
 
-        console.log('req.session.username: ', req.session.username);
+        console.log('Session created:', req.session.username);
 
-        console.log('Username and password found', username);
-        res.status(200).json({ message: 'user is safe', user: username });
+        res.status(200).json({
+            message: 'Login successful',
+            user: {
+                username: user.username,
+                displayName: user.displayName,
+            },
+        });
     } catch (error) {
-        console.error('Error fetching username and password data:', error);
+        console.error('Error during login:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });

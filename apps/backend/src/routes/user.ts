@@ -7,7 +7,7 @@ router.get('/lists', async (req, res) => {
     //check session if user logged in
     const username = req.session.username;
     if (!username) {
-        res.sendStatus(401).json({message: 'user not logged in.'});
+        res.sendStatus(401).json({ message: 'user not logged in.' });
     }
 
     try {
@@ -23,16 +23,16 @@ router.get('/lists', async (req, res) => {
             },
         });
         if (!user) {
-            res.sendStatus(401).json({message: 'no user found.'});
-        } else{
-            res.json({displayName: user.displayName,
+            res.sendStatus(401).json({ message: 'no user found.' });
+        } else {
+            res.json({
+                displayName: user.displayName,
                 username: user.username,
                 memberLists: user.memberships.map((m) => m.list),
-            })
+            });
         }
-    }
-    catch(err) {
-        console.error("no good", err);
+    } catch (err) {
+        console.error('cannot find lists shared with me', err);
     }
 });
 
