@@ -62,17 +62,21 @@ const Home = () => {
             <div className="pt-[80px] px-10 flex flex-col">
                 <h1 className="font-semibold text-lg text-center">Welcome, {listNames.displayName}</h1>
                 <div className="flex flex-row">
-                    {/*calender*/}
-                    <Calendar></Calendar>
-                    <Card className="ml-8 mt-6 w-80 bg-white/90 backdrop-blur-sm shadow-xl">
-                        <CardHeader>
-                            <CardTitle className="text-left text-2xl">My Items</CardTitle>
-                            <CardDescription className="text-left">
-                                Items you are assigned to bring
-                            </CardDescription>
-                        </CardHeader>
+                    <div className="flex flex-grow-3">
+                        {/*calender*/}
+                        <Calendar></Calendar>
+                    </div>
 
-                        <CardContent>
+
+                    <div className = "flex flex-row">
+                        <Card className="ml-8 mt-6 w-80 bg-white/90 backdrop-blur-sm shadow-xl">
+                            <CardHeader>
+                                <CardTitle className="text-left text-2xl">My Items</CardTitle>
+                                <CardDescription className="text-left">
+                                    Items you are assigned to bring
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
                                 <div className="flex flex-col gap-4">
 
                                     <div>
@@ -89,159 +93,95 @@ const Home = () => {
                                     </div>
                                 </div>
 
-                        </CardContent>
+                            </CardContent>
 
-                        <CardFooter className="flex-col gap-2">
-                            <Button variant="link" className="w-full">
-                                See more
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                    {/*OWNED LIST*/}
-                    <Card className="ml-8 mt-6 w-80 bg-white/90 backdrop-blur-sm shadow-xl">
-                        <CardHeader>
-                            <CardTitle className="text-left text-2xl">My Lists</CardTitle>
-                            <CardDescription className="text-left">
-                                Lists I own
-                            </CardDescription>
-                        </CardHeader>
+                            <CardFooter className="flex-col gap-2">
+                                <Button variant="link" className="w-full">
+                                    See more
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                        {/*OWNED LIST*/}
+                        <Card className="ml-8 mt-6 w-80 bg-white/90 backdrop-blur-sm shadow-xl">
+                            <CardHeader>
+                                <CardTitle className="text-left text-2xl">My Lists</CardTitle>
+                                <CardDescription className="text-left">
+                                    Lists I own
+                                </CardDescription>
+                            </CardHeader>
 
-                        <CardContent>
-                            {!listNames ? (
-                                <p className="text-center text-gray-500">You must sign in to access this page</p>
-                            ) : (
-                                <div className="flex flex-col gap-4">
-                                    <div>
-                                        {/*<h2 className="font-medium">Owned Lists</h2>*/}
-                                        <ul className="list-disc list-inside">
-                                            {listNames.ownedLists?.length ? (
-                                                listNames.ownedLists.map((list) => (
-                                                    <li key={list.id}>{list.name}</li>
-                                                ))
-                                            ) : (
-                                                <li>No owned lists</li>
-                                            )}
-                                        </ul>
+                            <CardContent>
+                                {!listNames ? (
+                                    <p className="text-center text-gray-500">You must sign in to access this page</p>
+                                ) : (
+                                    <div className="flex flex-col gap-4">
+                                        <div>
+                                            {/*<h2 className="font-medium">Owned Lists</h2>*/}
+                                            <ul className="list-disc list-inside">
+                                                {listNames.ownedLists?.length ? (
+                                                    listNames.ownedLists.map((list) => (
+                                                        <li key={list.id}>{list.name}</li>
+                                                    ))
+                                                ) : (
+                                                    <li>No owned lists</li>
+                                                )}
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                            )}
-                        </CardContent>
+                                )}
+                            </CardContent>
 
-                        <CardFooter className="flex-col gap-2">
-                            <Button variant="link" className="w-full">
-                                See more
-                            </Button>
-                        </CardFooter>
-                    </Card>
+                            <CardFooter className="flex-col gap-2">
+                                <Button variant="link" className="w-full">
+                                    See more
+                                </Button>
+                            </CardFooter>
+                        </Card>
 
-                    {/*SHARED wITH ME*/}
-                    <Card className="ml-8 mt-6 w-80 bg-white/90 backdrop-blur-sm shadow-xl">
-                        <CardHeader>
-                            <CardTitle className="text-left text-2xl">Shared with me</CardTitle>
-                            <CardDescription className="text-left">
-                                Events you are attending
-                            </CardDescription>
-                        </CardHeader>
+                        {/*SHARED wITH ME*/}
+                        <Card className="ml-8 mt-6 w-80 bg-white/90 backdrop-blur-sm shadow-xl">
+                            <CardHeader>
+                                <CardTitle className="text-left text-2xl">Shared with me</CardTitle>
+                                <CardDescription className="text-left">
+                                    Events you are attending
+                                </CardDescription>
+                            </CardHeader>
 
-                        <CardContent>
-                            {!listNames ? (
-                                <p className="text-center text-gray-500">You must sign in to access this page</p>
-                            ) : (
-                                <div className="flex flex-col gap-4">
+                            <CardContent>
+                                {!listNames ? (
+                                    <p className="text-center text-gray-500">You must sign in to access this page</p>
+                                ) : (
+                                    <div className="flex flex-col gap-4">
 
-                                    <div>
-                                        {/*<h2 className="font-medium">Lists shared with me</h2>*/}
-                                        <ul className="list-disc list-inside">
-                                            {listNames.memberLists?.length ? (
-                                                listNames.memberLists.map((list) => (
-                                                    <li key={list.id}>{list.name}</li>
-                                                ))
-                                            ) : (
-                                                <li>No member lists</li>
-                                            )}
-                                        </ul>
+                                        <div>
+                                            {/*<h2 className="font-medium">Lists shared with me</h2>*/}
+                                            <ul className="list-disc list-inside">
+                                                {listNames.memberLists?.length ? (
+                                                    listNames.memberLists.map((list) => (
+                                                        <li key={list.id}>{list.name}</li>
+                                                    ))
+                                                ) : (
+                                                    <li>No member lists</li>
+                                                )}
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                            )}
-                        </CardContent>
+                                )}
+                            </CardContent>
 
-                        <CardFooter className="flex-col gap-2">
-                            <Button variant="link" className="w-full">
-                                See more
-                            </Button>
-                        </CardFooter>
-                    </Card>
+                            <CardFooter className="flex-col gap-2">
+                                <Button variant="link" className="w-full">
+                                    See more
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
-
-    //     <div className="bg-background">
-    //         <header className="h-[65px] fixed top-0 left-0 right-0 bg-primary">
-    //             Header
-    //         </header>
-    //
-    //         <div className={"pt-[195px] flex justify-start items-start  h-[calc(100vh-65px)] bg-gray-50"}>
-    //             <Card className="ml-10 mt-4 w-80 bg-white/90 backdrop-blur-sm shadow-xl">
-    //                 <CardHeader>
-    //                     <CardTitle className={'text-left text-2xl'}>My Items</CardTitle>
-    //                     <CardDescription className={'text-left'}>
-    //                         Items you are assigned to bring
-    //                     </CardDescription>
-    //
-    //                 </CardHeader>
-    //                 <CardContent>
-    //                     <div className="flex flex-col items-center justify-center h-screen">
-    //                         {!listNames ? (
-    //                             <p>You must sign in to access this page</p>
-    //                         ) : (
-    //                             <div className="flex flex-col items-center justify-center h-screen">
-    //                                 <h1>Welcome, {listNames.displayName}</h1>
-    //
-    //                                 <h2>Owned Lists</h2>
-    //                                 <ul>
-    //                                     {listNames.ownedLists?.length ? (
-    //                                         listNames.ownedLists.map((list) => (
-    //                                             <li key={list.id}>{list.name}</li>
-    //                                         ))
-    //                                     ) : (
-    //                                         <li>No owned lists</li>
-    //                                     )}
-    //                                 </ul>
-    //
-    //                                 <h2>Member Lists</h2>
-    //                                 <ul>
-    //                                     {listNames.memberLists?.length ? (
-    //                                         listNames.memberLists.map((list) => (
-    //                                             <li key={list.id}>{list.name}</li>
-    //                                         ))
-    //                                     ) : (
-    //                                         <li>No member lists</li>
-    //                                     )}
-    //                                 </ul>
-    //                             </div>
-    //                         )}
-    //                     </div>
-    //                 </CardContent>
-    //                 <CardFooter className="flex-col gap-2">
-    //                     <Button variant="default" className="w-full"
-    //                             type="submit"
-    //                             onClick={(e) => {
-    //                                 e.preventDefault();
-    //                                 //handleLogin();
-    //                             }}
-    //                     >
-    //                         Login
-    //                     </Button>
-    //                     <Button variant="link" className="w-full">
-    //                         See more
-    //                     </Button>
-    //                 </CardFooter>
-    //             </Card>
-    //         </div>
-    //
-    //     </div>
     );
 };
 export default Home;
