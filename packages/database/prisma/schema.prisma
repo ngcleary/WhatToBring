@@ -27,6 +27,9 @@ model User {
 model List {
   id             Int              @id @default(autoincrement())
   name           String
+  description    String?
+  location       String
+  eventDate      DateTime
   ownerId        Int
   owner          User             @relation("OwnedLists", fields: [ownerId], references: [id])
   members        ListMember[]
@@ -39,7 +42,7 @@ model ListMember {
   id     Int    @id @default(autoincrement())
   listId Int
   userId Int
-  role   String @default("member") // could be "member" or "owner" if needed
+  role   String @default("member") // could be "member" or "owner"
 
   list List @relation(fields: [listId], references: [id])
   user User @relation(fields: [userId], references: [id])

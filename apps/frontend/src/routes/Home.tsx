@@ -11,6 +11,7 @@ import {
     CardHeader,
     CardTitle
 } from "../components/UI/card.tsx";
+import { Calendar } from "../components/UI/calendar.tsx";
 import {Button} from "../components/UI/Button.tsx";
 import {Input} from "../components/UI/Input.tsx";
 interface List {
@@ -61,6 +62,8 @@ const Home = () => {
             <div className="pt-[80px] px-10 flex flex-col">
                 <h1 className="font-semibold text-lg text-center">Welcome, {listNames.displayName}</h1>
                 <div className="flex flex-row">
+                    {/*calender*/}
+                    <Calendar></Calendar>
                     <Card className="ml-8 mt-6 w-80 bg-white/90 backdrop-blur-sm shadow-xl">
                         <CardHeader>
                             <CardTitle className="text-left text-2xl">My Items</CardTitle>
@@ -70,9 +73,6 @@ const Home = () => {
                         </CardHeader>
 
                         <CardContent>
-                            {!listNames ? (
-                                <p className="text-center text-gray-500">You must sign in to access this page</p>
-                            ) : (
                                 <div className="flex flex-col gap-4">
 
                                     <div>
@@ -83,12 +83,12 @@ const Home = () => {
                                                     <li key={list.id}>{list.name}</li>
                                                 ))
                                             ) : (
-                                                <li>No member lists</li>
+                                                <li>No items</li>
                                             )}
                                         </ul>
                                     </div>
                                 </div>
-                            )}
+
                         </CardContent>
 
                         <CardFooter className="flex-col gap-2">

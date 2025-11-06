@@ -35,6 +35,8 @@ async function main() {
     const campingList = await prisma.list.create({
         data: {
             name: 'Camping Trip',
+            location: 'the woods',
+            eventDate: new Date(),
             ownerId: nora.id,
         },
     });
@@ -42,7 +44,10 @@ async function main() {
     // Guest owns one list
     const picnicList = await prisma.list.create({
         data: {
-            name: 'Picnic Party',
+            name: 'Friends-giving',
+            description: 'Thankful',
+            location: '146 West St.',
+            eventDate: new Date(),
             ownerId: guest.id,
         },
     });
