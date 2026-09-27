@@ -15,26 +15,25 @@
 /*    -webkit-text-size-adjust: 100%;*/
 /*}*/
 
-    :root {
-        --background: #7C91A3;
-        --foreground: #1E1E1E;
+:root {
+    --background: #7c91a3;
+    --foreground: #1e1e1e;
 
-        --primary: #BF7C41;
-        --primary-foreground: #ffffff;
+    --primary: #bf7c41;
+    --primary-foreground: #ffffff;
 
-        /*--secondary: #8097A6;*/
-        --secondary: #e8e841;
-        --secondary-foreground: #ffffff;
+    /*--secondary: #8097A6;*/
+    --secondary: #e8e841;
+    --secondary-foreground: #ffffff;
 
-        --accent: #57731A;
-        --accent-foreground: #ffffff;
+    --accent: #57731a;
+    --accent-foreground: #ffffff;
 
-        --muted: #7C91A3;
-        --muted-foreground: #1E1E1E;
+    --muted: #7c91a3;
+    --muted-foreground: #1e1e1e;
 
-        --warning: #F2A007;
-    }
-
+    --warning: #f2a007;
+}
 
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
@@ -101,21 +100,21 @@
     --radius: 0.625rem;
 
     /* Replaced with your custom theme */
-    --background: #7C91A3;
-    --card: #FFFFFF;
+    --background: #7c91a3;
+    --card: #ffffff;
     --foreground: oklch(0.145 0 0);
     --card-foreground: oklch(0.145 0 0);
-    --popover: #FFFFFF;
+    --popover: #ffffff;
     --popover-foreground: oklch(0.145 0 0);
-    --primary: #57731A;
-    --primary-foreground: #FFFFFF;
-    --secondary: #6C8EB1;
+    --primary: #57731a;
+    --primary-foreground: #ffffff;
+    --secondary: #6c8eb1;
     --inside-boxes: #dbdbdbd;
     --secondary-foreground: #304269;
-    --muted: #8097A6;
+    --muted: #8097a6;
     --muted-foreground: oklch(0.556 0 0);
     /*--accent: oklch(0.577 0.245 27.325);*/
-    --accent: #BF7C41;
+    --accent: #bf7c41;
     --accent-foreground: #304269;
     --destructive: oklch(0.577 0.245 27.325);
 
@@ -129,10 +128,10 @@
     --chart-4: oklch(0.828 0.189 84.429);
     --chart-5: oklch(0.769 0.188 70.08);
 
-    --sidebar: #D9E8F5;
+    --sidebar: #d9e8f5;
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: #304269;
-    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-primary-foreground: #ffffff;
     --sidebar-accent: #d9e8f5;
     --sidebar-accent-foreground: #304269;
     --sidebar-border: oklch(0.922 0 0);
@@ -151,7 +150,7 @@
     --popover: #1e293b;
     --popover-foreground: #f1f5f9;
 
-    --primary: #6C8EB1;
+    --primary: #6c8eb1;
     --primary-foreground: #ffffff;
 
     --secondary: #64748b;
@@ -160,7 +159,7 @@
     --muted: #475569;
     --muted-foreground: #cbd5e1;
 
-    --accent: #30426A;
+    --accent: #30426a;
     --accent-foreground: #ffffff;
 
     --destructive: #ef4444;
@@ -184,7 +183,6 @@
     --sidebar-ring: #3b82f6;
 }
 
-
 /*---break---*/
 
 @layer base {
@@ -199,34 +197,61 @@
     .dark body {
         @apply bg-background text-foreground;
     }
-
 }
 
 /* fonts! */
 @layer utilities {
-    .font-trade { font-family: 'trade-gothic-next', sans-serif; }
-    .font-trade-compressed { font-family: 'trade-gothic-next-compressed', sans-serif; }
-    .font-trade-condensed { font-family: 'trade-gothic-next-condensed', sans-serif; }
-    .font-tgn-soft-round { font-family: 'tgn-soft-round', sans-serif; }
-    .font-tgn-soft-round-comp { font-family: 'tgn-soft-round-comp', sans-serif; }
+    .font-trade {
+        font-family: 'trade-gothic-next', sans-serif;
+    }
+    .font-trade-compressed {
+        font-family: 'trade-gothic-next-compressed', sans-serif;
+    }
+    .font-trade-condensed {
+        font-family: 'trade-gothic-next-condensed', sans-serif;
+    }
+    .font-tgn-soft-round {
+        font-family: 'tgn-soft-round', sans-serif;
+    }
+    .font-tgn-soft-round-comp {
+        font-family: 'tgn-soft-round-comp', sans-serif;
+    }
 
     /* Optional font-weight helpers */
-    .font-400 { font-weight: 400; }
-    .font-700 { font-weight: 700; }
+    .font-400 {
+        font-weight: 400;
+    }
+    .font-700 {
+        font-weight: 700;
+    }
 
     /* Optional font-style helpers */
-    .italic { font-style: italic; }
-    .not-italic { font-style: normal; }
+    .italic {
+        font-style: italic;
+    }
+    .not-italic {
+        font-style: normal;
+    }
 
     /* keyframes */
     @keyframes flash {
-        0% { opacity: 1; }
-        50% { opacity: 0; }
-        100% { opacity: 1; }
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
     @keyframes fade-in {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
 
     /* Animation utilities */
@@ -245,7 +270,6 @@
         opacity: 0;
         animation-fill-mode: forwards;
     }
-
 
     /* Card flip utilities */
     .perspective-1000 {

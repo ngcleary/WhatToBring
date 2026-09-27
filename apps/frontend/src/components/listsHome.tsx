@@ -5,10 +5,6 @@ interface listsHomeProps {
     username: string;
 }
 const listsHome = (props: listsHomeProps) => {
-    return(
-        <div>
-            hello {props.username}
-        </div>
-    );
-}
+    return <div>hello {props.username}</div>;
+};
 export default listsHome;

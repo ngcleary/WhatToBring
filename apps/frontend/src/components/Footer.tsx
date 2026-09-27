@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 interface FooterTextProps {
     children: React.ReactNode;
@@ -20,7 +20,6 @@ const Footer = () => {
 
                 <FooterText className="mb-3 text-white">
                     <span>For more information contact Nora Cleary:</span>
-
                 </FooterText>
                 <FooterText>
                     <a
@@ -29,9 +28,9 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="text-secondary hover:underline font-semibold"
                     >
-                        LinkedIn {' '}
+                        LinkedIn{' '}
                     </a>
-                     | {' '}
+                    |{' '}
                     <a
                         href="noracleary@gmail.com"
                         target="_blank"

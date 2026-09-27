@@ -59,7 +59,7 @@ router.post('/signup', async (req: Request, res: Response) => {
         if (user) {
             res.status(200).json({ message: 'user already exists' });
             return;
-        } else if (!user) {
+        } else {
             const newUser = await prisma.user.create({
                 data: {
                     username: usernameSignup,
@@ -67,12 +67,26 @@ router.post('/signup', async (req: Request, res: Response) => {
                     password: hashedPassword,
                 },
             });
+            req.session.username = newUser.username;
+            req.session.displayName = newUser.displayName;
         }
         res.status(200).json({ message: 'username and password saved' });
     } catch (error) {
         console.error('Error creating username and password data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+});
+
+router.post('/logout', (req: Request, res: Response): void => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Logout error:', err);
+            res.status(500).json({ error: 'Failed to log out' });
+            return;
+        }
+        res.clearCookie('connect.sid');
+        res.status(200).json({ message: 'Logged out successfully' });
+    });
 });
 
 export default router;
